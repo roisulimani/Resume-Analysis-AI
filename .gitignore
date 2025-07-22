@@ -1,0 +1,26 @@
+# Python/Flask ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+
+# Environment and secrets
+.env
+
+# Uploaded files
+uploads/
+
+# VSCode and IDE files
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+
+# Test and coverage
+.coverage
+htmlcov/
+
+# Ignore logs
+*.log 

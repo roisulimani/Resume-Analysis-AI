@@ -1,0 +1,91 @@
+/* Gradient background: light blue to purple to magenta/pink */
+.gradient-bg {
+    background: linear-gradient(135deg, #6dd5fa 0%, #8f6ed5 50%, #e66465 100%);
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.logo {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.gradient-btn {
+    background: linear-gradient(90deg, #6dd5fa 0%, #8f6ed5 50%, #e66465 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    transition: box-shadow 0.2s;
+}
+.gradient-btn:hover {
+    box-shadow: 0 0 0 0.2rem rgba(143, 110, 213, 0.2);
+    color: #fff;
+}
+
+.summary-box {
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+.json-box {
+    background: #23272b;
+    color: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    word-break: break-all;
+}
+
+.spinner-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(255,255,255,0.7);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    display: none;
+}
+
+.badge-flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-body-scroll {
+    overflow-x: auto;
+    word-break: break-word;
+}
+
+.result-badge {
+    margin: 0 0.25rem 0.25rem 0;
+    font-size: 0.97rem;
+    padding: 0.5em 0.8em;
+}
+
+.card {
+    border-radius: 1.5rem;
+}
+
+.card.translucent {
+    background: rgba(255,255,255,0.88) !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    backdrop-filter: blur(2px);
+}
+
+@media (max-width: 600px) {
+    .card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+    }
+    .logo {
+        max-width: 80px;
+    }
+} 

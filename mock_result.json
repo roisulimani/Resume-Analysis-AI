@@ -1,0 +1,27 @@
+{
+  "matching_score": 60.0,
+  "matched_skills": [
+    "Python",
+    "PyTorch",
+    "REST API development",
+    "Git",
+    "Agile methodologies"
+  ],
+  "missing_skills": [
+    "Machine learning and AI frameworks (e.g., TensorFlow)",
+    "Cloud platforms (AWS or Azure)"
+  ],
+  "matched_experience": [
+    "Developed and maintained machine learning models using PyTorch",
+    "Built and deployed REST APIs for AI-powered applications",
+    "Collaborated with product and research teams in an agile environment"
+  ],
+  "missing_experience": [],
+  "summary": "The candidate has a matching score of 60%. They possess most of the required skills such as Python, PyTorch, REST API development, Git, and Agile methodologies. However, they lack experience in working with cloud platforms like AWS or Azure and machine learning frameworks like TensorFlow. The candidate's experience aligns well with the job responsibilities, showcasing proficiency in developing machine learning models, building REST APIs, and collaborating in an agile environment.",
+  "cost_estimate": {
+    "prompt_tokens": 300,
+    "completion_tokens": 203,
+    "total_tokens": 503,
+    "usd": 0.000755
+  }
+}

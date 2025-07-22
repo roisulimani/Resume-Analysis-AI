@@ -1,0 +1,72 @@
+# AI Resume System - Development Rules
+
+## Project Guidelines
+
+- Follow the PROJECT_PLAN.md for implementation phases
+- Update PROGRESS_TRACKING.md as tasks are completed
+- Maintain clean, well-documented code
+- Focus on core functionality before adding advanced features
+
+## Technical Requirements
+
+- Use Python 3.10 for all Python commands and scripts
+- Implement proper error handling and logging
+- Follow PEP 8 coding standards
+- Use type hints where appropriate
+
+## UI Design Requirements
+
+- Create a clean and modern interface
+- Minimize text content - use concise marketing phrases only
+- Incorporate the Stampli logo from stampli.png
+- Use and incorporate the gradient colors from the logo (light blue to purple to magenta/pink)
+- Ensure responsive design for different screen sizes
+
+## Code Organization
+
+- Keep modules focused and single-purpose
+- Use clear, descriptive function and variable names
+- Add comprehensive docstrings for all functions
+- Implement proper separation of concerns
+
+## Security Considerations
+
+- Implement prompt injection prevention
+- Validate all user inputs
+- Handle API keys securely
+- Add rate limiting for API calls
+
+## Performance Requirements
+
+- Implement token counting for cost estimation
+- Optimize API calls to minimize latency
+- Add progress indicators for long-running operations
+- Cache results where appropriate
+- Add the actual cost from the LLM response to the outputs
+
+## Testing Strategy
+
+- Test each component individually
+- Create sample data for testing
+- Validate JSON output format
+- Test error scenarios and edge cases
+
+## Documentation
+
+- Add extensive explanations for code changes
+- Document new libraries and technologies used
+- Include setup and usage instructions
+- Maintain clear commit messages
+
+## No Emojis Policy
+
+- Do not use emojis anywhere in the codebase
+- Keep communication professional and clear
+- Use text-based indicators for status and progress
+
+## Development Workflow
+
+1. Start with core Python functionality
+2. Test thoroughly before moving to UI
+3. Integrate components incrementally
+4. Update progress tracking after each major milestone

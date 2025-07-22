@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Match by Stampli</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <style>
+      .result-badge {
+        margin: 0 0.25rem 0.25rem 0;
+      }
+      .card.translucent {
+        background: rgba(255, 255, 255, 0.88) !important;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        backdrop-filter: blur(2px);
+      }
+      .badge-flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        margin-bottom: 0.5rem;
+      }
+      .card-body-scroll {
+        overflow-x: auto;
+        word-break: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="spinner-overlay" id="spinner-overlay">
+      <div
+        class="spinner-border text-primary"
+        style="width: 4rem; height: 4rem"
+        role="status"
+      >
+        <span class="visually-hidden">Analyzing...</span>
+      </div>
+    </div>
+    <div
+      class="gradient-bg min-vh-100 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div
+        class="card translucent shadow-lg p-4"
+        style="max-width: 540px; width: 100%; border-radius: 1.5rem"
+      >
+        <div class="text-center mb-3">
+          <img src="{{ logo_url }}" alt="Stampli Logo" class="logo mb-2" />
+          <h2 class="fw-bold" style="letter-spacing: 1px">AI Resume Match</h2>
+          <p class="text-muted mb-0" style="font-size: 1.1rem">
+            Instantly match top talent to your job openings.
+          </p>
+        </div>
+        <form method="POST" enctype="multipart/form-data" id="analyze-form">
+          <div class="mb-3">
+            <label for="job" class="form-label">Job Description</label>
+            <input
+              class="form-control"
+              type="file"
+              id="job"
+              name="job"
+              accept=".pdf,.docx,.txt"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="resume" class="form-label">Candidate Resume</label>
+            <input
+              class="form-control"
+              type="file"
+              id="resume"
+              name="resume"
+              accept=".pdf,.docx,.txt"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary w-100 gradient-btn">
+            Analyze Match
+          </button>
+        </form>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="alert alert-warning mt-3" role="alert">
+          {{ messages[0] }}
+        </div>
+        {% endif %} {% endwith %} {% if summary and parsed_result %}
+        <hr />
+        <div class="mt-3">
+          <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-body card-body-scroll">
+              <div class="d-flex align-items-center mb-2">
+                <h5 class="fw-bold mb-0 me-2">Matching Score</h5>
+                {% set score = parsed_result.matching_score if
+                parsed_result.matching_score is defined else 0 %}
+                <span
+                  class="badge bg-gradient text-white ms-2"
+                  style="
+                    background: linear-gradient(
+                      90deg,
+                      #6dd5fa 0%,
+                      #8f6ed5 50%,
+                      #e66465 100%
+                    );
+                    font-size: 1.1rem;
+                  "
+                  >{{ score }}/100</span
+                >
+              </div>
+              <div class="progress mb-3" style="height: 1.2rem">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  style="width: {{ score }}%; background: linear-gradient(90deg, #6dd5fa 0%, #8f6ed5 50%, #e66465 100%);"
+                  aria-valuenow="{{ score }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  {{ score }}%
+                </div>
+              </div>
+              <div class="mb-2">
+                <strong>Matched Skills:</strong><br />
+                <div class="badge-flex-wrap">
+                  {% for skill in parsed_result.matched_skills %}
+                  <span class="badge bg-success result-badge">{{ skill }}</span>
+                  {% else %}<span class="text-muted">None</span>{% endfor %}
+                </div>
+              </div>
+              <div class="mb-2">
+                <strong>Missing Skills:</strong><br />
+                <div class="badge-flex-wrap">
+                  {% for skill in parsed_result.missing_skills %}
+                  <span class="badge bg-danger result-badge">{{ skill }}</span>
+                  {% else %}<span class="text-muted">None</span>{% endfor %}
+                </div>
+              </div>
+              <div class="mb-2">
+                <strong>Matched Experience:</strong><br />
+                <div class="badge-flex-wrap">
+                  {% for exp in parsed_result.matched_experience %}
+                  <span class="badge bg-primary result-badge">{{ exp }}</span>
+                  {% else %}<span class="text-muted">None</span>{% endfor %}
+                </div>
+              </div>
+              <div class="mb-2">
+                <strong>Missing Experience:</strong><br />
+                <div class="badge-flex-wrap">
+                  {% for exp in parsed_result.missing_experience %}
+                  <span class="badge bg-warning text-dark result-badge"
+                    >{{ exp }}</span
+                  >
+                  {% else %}<span class="text-muted">None</span>{% endfor %}
+                </div>
+              </div>
+              <div class="mb-2">
+                <strong>Summary:</strong>
+                <div class="summary-box mt-1">{{ parsed_result.summary }}</div>
+              </div>
+              <div class="mb-2">
+                <strong>Token Usage:</strong>
+                <span class="badge bg-secondary"
+                  >{{ parsed_result.cost_estimate.total_tokens if
+                  parsed_result.cost_estimate is defined and
+                  parsed_result.cost_estimate.total_tokens is defined else 'N/A'
+                  }}</span
+                >
+                <strong>Cost:</strong>
+                <span class="badge bg-info text-dark"
+                  >${{ parsed_result.cost_estimate.usd if
+                  parsed_result.cost_estimate is defined and
+                  parsed_result.cost_estimate.usd is defined else 'N/A' }}</span
+                >
+              </div>
+            </div>
+          </div>
+          <details class="mt-2">
+            <summary>Show Full JSON Output</summary>
+            <pre
+              class="json-box"
+              style="overflow-x: auto; word-break: break-all"
+            >
+{{ json_output }}</pre
+            >
+          </details>
+        </div>
+        {% endif %}
+      </div>
+      <footer class="mt-4 text-white-50 small">
+        &copy; {{ 2024 }} Stampli. AI-powered hiring, simplified.
+      </footer>
+    </div>
+    <script>
+      const form = document.getElementById("analyze-form");
+      const spinner = document.getElementById("spinner-overlay");
+      if (form && spinner) {
+        form.addEventListener("submit", function () {
+          spinner.style.display = "flex";
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+AI Systems Engineer
+Tel Aviv · Full-time · Intermediate
+About The Position:
+We’re hiring an AI System Engineer to lead AI-driven innovation across the entire organization. This is a hands-on, builder-focused role where you’ll identify automation opportunities, develop fast prototypes, and scale impactful systems that remove friction, reduce manual work, and accelerate execution across departments.
+You’ll work directly with internal teams to co-design solutions that blend business logic with AI capabilities—unlocking measurable productivity gains.
+
+What You Will Do:
+- Workflow Analysis: Collaborate with teams to understand their day-to-day processes, identify bottlenecks, and propose AI/automation-based solutions.
+- Prototype & Deliver MVPs: Rapidly build and iterate on tools using platforms like Zapier, Make, LangChain, OpenAI Assistants, and custom Python scripts.
+- Partner Across Functions: Support use cases across Marketing, Sales, Support, HR, Finance, Engineering, and Product—tailoring solutions to each team’s workflows.
+- Operationalize Solutions: Turn MVPs into stable, monitored systems with observability, fallback handling, and documentation.
+- System Integration: Seamlessly connect AI workflows to tools such as HubSpot, Salesforce, Notion, GitHub, Jira, Slack, internal APIs, and more.
+- Troubleshooting & Optimization: Continuously improve solution quality—debug failures, refine prompts and logic, and ensure high reliability.
+- Enablement & Documentation: Deliver internal documentation, reusable templates, and hands-on support to drive team adoption and responsible usage.
+- Quantify Impact: Track business value metrics such as time saved, error reduction, and improved cycle times.
+
+What You Will Bring:
+- 3–5 years of experience in automation, ops engineering, internal tooling, or technical enablement roles
+- Strong Python and SQL skills
+- Proficiency with no-code/low-code tools (e.g., Zapier, Make, Airtable)
+- Experience working with LLMs and frameworks such as OpenAI, Claude, LangChain, or similar
+- Ability to work cross-functionally and translate business needs into practical technical solutions.
+
+Bonus if you have:
+- Experience with REST APIs, webhooks, and system integrations
+- Familiarity with internal tooling needs of engineering and product teams (e.g., Jira workflows, GitHub automations)
+- Understanding of AI governance, data privacy, and fallback/responsibility frameworks
+- Strong written and verbal communication skills with both technical and non-technical stakeholders
+- Experience developing internal documentation and onboarding materials
+
+
+You Will Get:
+- High-impact ownership across departments and direct access to users
+- Autonomy to drive initiatives from idea to implementation
+- Hybrid work model: 3 days/week in our vibrant Tel Aviv HQ (Tue–Thu), rest remote
+- Stock options—you grow with us
+- Supportive, fast-moving leadership and meaningful learning opportunities
+- Collaborative, diverse, and fun company culture

@@ -1,0 +1,21 @@
+John Doe
+
+Professional Summary:
+Experienced software engineer with a strong background in Python and machine learning. Passionate about building scalable AI solutions and collaborating with diverse teams.
+
+Skills:
+- Python
+- PyTorch
+- REST API development
+- Git
+- Agile methodologies
+- Data analysis
+
+Experience:
+Software Engineer, TechAI Solutions (2021-2024)
+- Developed and maintained machine learning models using PyTorch
+- Built and deployed REST APIs for AI-powered applications
+- Collaborated with product and research teams in an agile environment
+
+Education:
+B.Sc. in Computer Science 

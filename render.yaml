@@ -1,0 +1,19 @@
+# Render deployment configuration for AI Resume System Flask app
+# See: https://render.com/docs/web-services
+
+services:
+  - type: web
+    name: ai-resume-system
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+      - key: OPENAI_API_KEY
+        value: "<set-in-render-dashboard>" # Set this securely in the Render dashboard, not in this file
+    autoDeploy: true
+    # Expose default web port (Render uses 10000 internally, but Flask/Gunicorn will use $PORT)
+    # No need to specify port unless using a custom one
+    # If you use .env for secrets, add them in Render's dashboard as environment variables

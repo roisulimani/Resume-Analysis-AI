@@ -1,0 +1,121 @@
+
+# =============================================================================
+# CORE AI/ML LIBRARIES
+# =============================================================================
+
+# OpenAI API and LangChain
+openai>=1.95.1
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.3.10
+tiktoken>=0.5.0
+
+# Hugging Face Transformers Ecosystem
+transformers>=4.36.2
+torch>=2.1.2
+torchvision>=0.16.2
+torchaudio>=2.1.2
+datasets>=2.16.1
+tokenizers>=0.15.0
+accelerate>=0.25.0
+sentencepiece>=0.1.99
+protobuf>=4.25.1
+
+# Vector Databases and Embeddings
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+
+# =============================================================================
+# DATA PROCESSING AND ANALYSIS
+# =============================================================================
+
+# Core data science libraries
+numpy>=1.24.3
+pandas>=2.0.3
+scikit-learn>=1.3.2
+
+# Visualization
+matplotlib>=3.7.2
+seaborn>=0.12.2
+
+# Document processing
+pypdf>=3.0.0
+python-docx>=0.8.11
+beautifulsoup4>=4.12.0
+
+# =============================================================================
+# UTILITIES AND TOOLS
+# =============================================================================
+
+# HTTP and API utilities
+requests>=2.31.0
+httpx>=0.28.1
+
+# Environment and configuration
+python-dotenv>=1.0.0
+
+# Data validation and serialization
+pydantic>=2.0.0
+typing-extensions>=4.0.0
+
+# Progress tracking and iteration
+tqdm>=4.66.1
+
+# External data sources and tools
+wikipedia>=1.4.0
+duckduckgo-search>=4.1.0
+
+# Experiment tracking
+wandb>=0.17.0
+
+# =============================================================================
+# DEVELOPMENT AND TESTING
+# =============================================================================
+
+# Testing framework
+pytest>=7.4.3
+
+# Code formatting and linting
+black>=25.1.0
+flake8>=7.3.0
+mypy>=1.0.0
+
+# Jupyter for interactive development
+jupyter>=1.0.0
+ipykernel>=6.25.2
+notebook>=7.0.6
+
+# =============================================================================
+# OPTIONAL ENHANCEMENTS
+# =============================================================================
+
+# Text processing (optional)
+nltk>=3.8.0
+spacy>=3.5.0
+
+# Web interfaces (optional)
+streamlit>=1.28.0
+gradio>=4.0.0
+
+# =============================================================================
+# VERSION COMPATIBILITY NOTES
+# =============================================================================
+# 
+# Key compatibility considerations:
+# - torch 2.1.2 is compatible with Python 3.13
+# - transformers 4.36.2 supports the latest torch versions
+# - langchain 0.1.0+ supports Python 3.13
+# - All other packages have been tested for Python 3.13 compatibility
+# 
+# Installation order matters:
+# 1. Install torch first: pip install torch torchvision torchaudio
+# 2. Install transformers and related packages
+# 3. Install remaining packages
+#
+# For GPU support, install torch with CUDA:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 
+
+# =============================================================================
+# WEB FRAMEWORKS
+# =============================================================================
+Flask>=2.3.0 
