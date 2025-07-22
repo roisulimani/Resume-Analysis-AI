@@ -28,27 +28,35 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        job_file = request.files.get('job')
-        resume_file = request.files.get('resume')
-        if not job_file or not allowed_file(job_file.filename):
-            flash('Please upload a valid job description file (PDF, DOCX, or TXT).')
-            return redirect(request.url)
-        if not resume_file or not allowed_file(resume_file.filename):
-            flash('Please upload a valid resume file (PDF, DOCX, or TXT).')
-            return redirect(request.url)
-        job_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(job_file.filename))
-        resume_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(resume_file.filename))
-        job_file.save(job_path)
-        resume_file.save(resume_path)
-        try:
-            job_desc = parse_input(job_path)
-            resume = parse_input(resume_path)
-        except InputValidationError as e:
-            flash(f'Input error: {e}')
-            return redirect(request.url)
-        except Exception as e:
-            flash(f'Unexpected error: {e}')
-            return redirect(request.url)
+        use_demo = request.form.get('use_demo', '0') == '1'
+        if use_demo:
+            job_desc = request.form.get('job_demo', '').strip()
+            resume = request.form.get('resume_demo', '').strip()
+            if not job_desc or not resume:
+                flash('Demo job description and resume cannot be empty.')
+                return redirect(request.url)
+        else:
+            job_file = request.files.get('job')
+            resume_file = request.files.get('resume')
+            if not job_file or not allowed_file(job_file.filename):
+                flash('Please upload a valid job description file (PDF, DOCX, or TXT).')
+                return redirect(request.url)
+            if not resume_file or not allowed_file(resume_file.filename):
+                flash('Please upload a valid resume file (PDF, DOCX, or TXT).')
+                return redirect(request.url)
+            job_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(job_file.filename))
+            resume_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(resume_file.filename))
+            job_file.save(job_path)
+            resume_file.save(resume_path)
+            try:
+                job_desc = parse_input(job_path)
+                resume = parse_input(resume_path)
+            except InputValidationError as e:
+                flash(f'Input error: {e}')
+                return redirect(request.url)
+            except Exception as e:
+                flash(f'Unexpected error: {e}')
+                return redirect(request.url)
         try:
             result: AnalysisResult = analyze_resume(job_desc, resume)
             summary = format_human_readable_summary(result)

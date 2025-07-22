@@ -1,0 +1,19 @@
+Software Engineer - AI Systems
+
+We are seeking a Software Engineer with experience in:
+- Python programming
+- Machine learning and AI frameworks (e.g., TensorFlow, PyTorch)
+- REST API development
+- Cloud platforms (AWS or Azure)
+- Version control (Git)
+
+Preferred experience:
+- Natural Language Processing (NLP)
+- Working with large language models (LLMs)
+- Agile development methodologies
+
+Responsibilities:
+- Design, develop, and maintain AI-driven applications
+- Collaborate with cross-functional teams
+- Write clean, well-documented code
+- Participate in code reviews and agile ceremonies 

@@ -15,6 +15,7 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.output_parsers import PydanticOutputParser
 import tiktoken
 import dotenv
+import re
 
 dotenv.load_dotenv()
 
@@ -76,6 +77,19 @@ def build_prompt(job_desc: str, resume: str) -> str:
     )
 
 
+def extract_json_from_llm_output(text: str) -> str:
+    """
+    Removes Markdown code block markers (``` or ```json) from LLM output.
+    Args:
+        text (str): Raw LLM output.
+    Returns:
+        str: Cleaned JSON string.
+    """
+    # Remove triple backticks and optional 'json' after them
+    cleaned = re.sub(r"^```(?:json)?\s*|```$", "", text.strip(), flags=re.IGNORECASE | re.MULTILINE)
+    return cleaned.strip()
+
+
 def analyze_resume(job_desc: str, resume: str, model_name: str = "gpt-3.5-turbo") -> AnalysisResult:
     """
     Analyzes the resume against the job description using OpenAI LLM via LangChain.
@@ -103,13 +117,15 @@ def analyze_resume(job_desc: str, resume: str, model_name: str = "gpt-3.5-turbo"
     llm = ChatOpenAI(api_key=OPENAI_API_KEY, model=model_name, temperature=0.3)
     try:
         response = llm(prompt)
+        # Clean LLM output
+        cleaned_output = extract_json_from_llm_output(response.content)
         # Token counting for completion
         completion_tokens = count_tokens(response.content, model=model_name)
         total_tokens = prompt_tokens + completion_tokens
         usd_cost = total_tokens / 1000 * COST_PER_1K_TOKENS
         logger.info(f"Prompt tokens: {prompt_tokens}, Completion tokens: {completion_tokens}, Total: {total_tokens}, Cost: ${usd_cost:.4f}")
         # Parse and validate output
-        result = parser.parse(response.content)
+        result = parser.parse(cleaned_output)
         result.cost_estimate = {
             'prompt_tokens': prompt_tokens,
             'completion_tokens': completion_tokens,
